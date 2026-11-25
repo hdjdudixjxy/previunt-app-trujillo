@@ -1,1 +1,262 @@
-<!doctype html><html lang="es"><meta charset="utf-8"><title>PREVIUNT</title><h1>PREVIUNT v2</h1></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a40">
+  <meta name="description" content="Prototipo responsive de monitoreo comunitario para la quebrada San Ildefonso, Trujillo.">
+  <title>PREVIUNT · Centro de monitoreo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-river" viewBox="0 0 32 32"><path d="M3 11c4-5 8 5 13 0s9-5 13 0M3 20c4-5 8 5 13 0s9-5 13 0M3 27c4-5 8 5 13 0s9-5 13 0"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/><path d="M8 21v-5h8v5"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H7l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 10h8M8 14h5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 17.5a4.5 4.5 0 1 1 .8-8.9A6 6 0 0 1 19 10a3.8 3.8 0 0 1-.5 7.5"/><path d="m8 20-1 2m6-2-1 2m6-2-1 2"/></symbol>
+    <symbol id="i-waves" viewBox="0 0 24 24"><path d="M2 8c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 13c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 18c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.5 17a9 9 0 1 1 15 0"/><path d="m12 13 4-4M7 19h10"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m10.3 3.9-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.1l-8-14a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 4h.01"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4M4 16v4h16v-4"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio" data-page="home" aria-label="PREVIUNT, ir a Inicio">
+        <span class="brand-mark"><svg class="icon icon-brand"><use href="#i-river"/></svg></span>
+        <span class="brand-name">PREVIUNT</span>
+      </a>
+      <div class="site-context">
+        <span class="eyebrow">Monitoreo local</span>
+        <strong>Quebrada San Ildefonso</strong>
+        <span>Trujillo · La Libertad</span>
+      </div>
+      <nav class="primary-nav" aria-label="Secciones">
+        <button class="nav-item is-active" data-page="home" aria-current="page"><svg class="icon"><use href="#i-home"/></svg><span>Inicio</span></button>
+        <button class="nav-item" data-page="map"><svg class="icon"><use href="#i-map"/></svg><span>Mapa</span></button>
+        <button class="nav-item" data-page="reports"><svg class="icon"><use href="#i-message"/></svg><span>Reportes</span><span class="nav-count" id="nav-report-count">3</span></button>
+        <button class="nav-item" data-page="prepare"><svg class="icon"><use href="#i-shield"/></svg><span>Prepárate</span></button>
+        <button class="nav-item" data-page="history"><svg class="icon"><use href="#i-clock"/></svg><span>Historial</span></button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="connection-dot" aria-hidden="true"></span>
+        <div><strong>Prototipo activo</strong><span>Solo datos de demostración</span></div>
+      </div>
+    </aside>
+
+    <div class="content-shell">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-mark"><svg class="icon icon-brand"><use href="#i-river"/></svg></span>
+          <span class="brand-name">PREVIUNT</span>
+        </div>
+        <div class="topbar-location"><svg class="icon"><use href="#i-pin"/></svg><span>Quebrada San Ildefonso · Trujillo</span></div>
+        <div class="topbar-actions">
+          <span class="demo-badge"><span class="demo-dot"></span> Modo demo <span class="demo-detail">· datos simulados</span></span>
+          <span class="online-badge"><span class="online-dot"></span> En línea</span>
+        </div>
+      </header>
+
+      <main id="main-content" class="main-content">
+        <section class="view is-active" data-view="home" aria-labelledby="home-title">
+          <div class="page-heading">
+            <div><p class="eyebrow">Resumen de la zona</p><h1 id="home-title">Centro de monitoreo</h1><p class="page-subtitle">Sensores y reportes comunitarios en un solo lugar.</p></div>
+            <button class="button button-primary report-open"><svg class="icon"><use href="#i-plus"/></svg>Reportar incidente</button>
+          </div>
+
+          <section class="status-band" aria-label="Estado del sensor de cauce">
+            <div class="status-main">
+              <span class="status-icon"><svg class="icon"><use href="#i-waves"/></svg></span>
+              <div><span class="eyebrow">Sensor de cauce</span><strong>Nivel 0 <span>·</span> Seca</strong></div>
+            </div>
+            <div class="status-meta"><span><svg class="icon"><use href="#i-clock"/></svg>Última lectura: 21:48</span><span><svg class="icon"><use href="#i-layers"/></svg>4/4 sensores en línea</span></div>
+            <p class="status-note"><svg class="icon"><use href="#i-info"/></svg>El estado refleja las lecturas de sensores. Los reportes comunitarios pueden seguir en revisión.</p>
+          </section>
+
+          <div class="sensor-grid">
+            <article class="sensor-card"><div class="sensor-symbol"><svg class="icon"><use href="#i-rain"/></svg></div><div class="sensor-copy"><span>Lluvia <small>· últimos 30 min</small></span><strong>0.0 <small>mm</small></strong></div><svg class="sparkline" viewBox="0 0 90 28" aria-label="Lectura estable"><path d="M2 22 16 21 28 22 40 21 52 22 64 21 76 22 88 21"/></svg></article>
+            <article class="sensor-card"><div class="sensor-symbol"><svg class="icon"><use href="#i-waves"/></svg></div><div class="sensor-copy"><span>Nivel del cauce</span><strong>0.08 <small>m</small></strong></div><svg class="sparkline" viewBox="0 0 90 28" aria-label="Nivel estable"><path d="M2 18 14 17 26 18 38 17 50 17 62 16 74 17 88 16"/></svg></article>
+            <article class="sensor-card"><div class="sensor-symbol"><svg class="icon"><use href="#i-gauge"/></svg></div><div class="sensor-copy"><span>Velocidad del flujo</span><strong>0.2 <small>m/s</small></strong></div><svg class="sparkline" viewBox="0 0 90 28" aria-label="Flujo estable"><path d="M2 20 14 19 26 20 38 18 50 19 62 18 74 19 88 18"/></svg></article>
+          </div>
+
+          <div class="home-grid">
+            <section class="panel map-panel">
+              <div class="panel-heading"><div><p class="eyebrow">Vista territorial</p><h2>Mapa de situación</h2></div><button class="text-button" data-page="map">Abrir mapa <span aria-hidden="true">↗</span></button></div>
+              <div class="map-frame map-frame-home">
+                <svg class="map-visual" viewBox="0 0 820 470" role="img" aria-label="Mapa esquemático de Trujillo y el cauce de la quebrada San Ildefonso">
+                  <defs><pattern id="streets-home" width="48" height="38" patternUnits="userSpaceOnUse"><path d="M0 8H48M0 26H48M8 0V38M30 0V38" fill="none" stroke="#d8ddda" stroke-width="1.2"/></pattern></defs>
+                  <rect width="820" height="470" fill="#f4f3eb"/><rect width="820" height="470" fill="url(#streets-home)"/>
+                  <path class="map-safe" data-layer="safe" d="M45 55 165 34 206 102 155 157 55 139zM606 326l154-32 35 98-105 52-95-37zM420 20l95-7 28 55-80 42-61-39z"/>
+                  <path class="map-risk" data-layer="risk" d="M40 345C158 305 242 340 329 286s160-50 236-104 153-73 232-72l23 91c-84-4-143 28-225 80s-151 43-227 92-190 40-323 72z"/>
+                  <path class="map-road main-road" d="M18 397 202 290 349 254 498 172 787 57M91 26l136 147 128 81 72 162M40 204l235 27 127-12 138 40 235 12"/>
+                  <path class="map-cauce" d="M14 371C125 337 175 306 256 300c86-6 107-38 179-70s101-13 165-53 110-57 207-63"/>
+                  <path class="map-cauce-label" d="M321 280C393 245 452 211 515 179"/>
+                  <text class="map-label" x="158" y="94">Alto Trujillo</text><text class="map-label" x="429" y="241">El Porvenir</text><text class="map-label" x="304" y="335">Florencia de Mora</text><text class="map-label map-label-city" x="318" y="422">Trujillo</text><text class="map-small-label" x="527" y="170">Quebrada San Ildefonso</text>
+                  <g class="map-marker" data-layer="sensors" data-report-id="sensor-1" tabindex="0" role="button" aria-label="Sensor de cauce, lectura normal"><circle cx="254" cy="302" r="14"/><path d="M246 302c3 0 3-4 7-4s4 4 8 4m-15 5c3 0 3-4 7-4s4 4 8 4"/></g>
+                  <g class="map-marker marker-warning" data-layer="reports" data-report-id="r1" tabindex="0" role="button" aria-label="Reporte de agua acumulada, El Porvenir"><circle cx="498" cy="195" r="13"/><path d="M498 188v8m0 5h.01"/></g>
+                  <g class="map-marker marker-danger" data-layer="reports" data-report-id="r3" tabindex="0" role="button" aria-label="Reporte de vivienda afectada, Río Seco"><circle cx="357" cy="284" r="13"/><path d="M357 277v8m0 5h.01"/></g>
+                  <g class="map-marker marker-safe" data-layer="safe" data-report-id="safe-1" tabindex="0" role="button" aria-label="Zona segura, Alto Trujillo"><circle cx="124" cy="91" r="13"/><path d="m118 91 4 4 8-9"/></g>
+                  <g class="map-marker marker-safe" data-layer="safe" data-report-id="safe-2" tabindex="0" role="button" aria-label="Zona segura, Trujillo"><circle cx="687" cy="376" r="13"/><path d="m681 376 4 4 8-9"/></g>
+                </svg>
+                <div class="map-legend"><span><i class="legend-line"></i>Cauce</span><span><i class="legend-dot legend-amber"></i>Reporte</span><span><i class="legend-square"></i>Zona segura</span></div>
+                <span class="map-caption">Trazado esquemático · referencia visual</span>
+              </div>
+            </section>
+
+            <section class="panel recent-panel">
+              <div class="panel-heading"><div><p class="eyebrow">Actividad vecinal</p><h2>Reportes recientes</h2></div><button class="text-button" data-page="reports">Ver todos</button></div>
+              <div id="home-report-list" class="compact-report-list"></div>
+              <div class="panel-footnote"><svg class="icon"><use href="#i-info"/></svg>Imágenes y reportes de demostración.</div>
+            </section>
+          </div>
+          <div class="safety-note"><svg class="icon"><use href="#i-info"/></svg><span>Si observas una emergencia, aléjate del cauce y comunícate con las autoridades locales. Esta maqueta no es un canal de emergencias.</span></div>
+        </section>
+
+        <section class="view" data-view="map" aria-labelledby="map-title" hidden>
+          <div class="page-heading"><div><p class="eyebrow">Quebrada San Ildefonso · Trujillo</p><h1 id="map-title">Mapa de situación</h1><p class="page-subtitle">Explora sensores, avisos vecinales y zonas de referencia.</p></div><button class="button button-primary report-open"><svg class="icon"><use href="#i-plus"/></svg>Reportar en el mapa</button></div>
+          <div class="map-toolbar" aria-label="Capas del mapa">
+            <button class="layer-toggle is-on" data-layer-toggle="sensors" aria-pressed="true"><svg class="icon"><use href="#i-gauge"/></svg>Sensores</button>
+            <button class="layer-toggle is-on" data-layer-toggle="reports" aria-pressed="true"><svg class="icon"><use href="#i-message"/></svg>Reportes</button>
+            <button class="layer-toggle is-on" data-layer-toggle="risk" aria-pressed="true"><svg class="icon"><use href="#i-alert"/></svg>Zonas de riesgo</button>
+            <button class="layer-toggle is-on" data-layer-toggle="safe" aria-pressed="true"><svg class="icon"><use href="#i-shield"/></svg>Puntos seguros</button>
+          </div>
+          <div class="map-layout">
+            <section class="panel full-map-panel" aria-label="Mapa interactivo esquemático">
+              <div class="map-frame map-frame-full">
+                <svg class="map-visual" viewBox="0 0 820 470" role="img" aria-label="Mapa esquemático de Trujillo con cauce, zonas de referencia, sensores y reportes vecinales">
+                  <defs><pattern id="streets-full" width="48" height="38" patternUnits="userSpaceOnUse"><path d="M0 8H48M0 26H48M8 0V38M30 0V38" fill="none" stroke="#d8ddda" stroke-width="1.2"/></pattern></defs>
+                  <rect width="820" height="470" fill="#f4f3eb"/><rect width="820" height="470" fill="url(#streets-full)"/>
+                  <path class="map-safe" data-layer="safe" d="M45 55 165 34 206 102 155 157 55 139zM606 326l154-32 35 98-105 52-95-37zM420 20l95-7 28 55-80 42-61-39z"/>
+                  <path class="map-risk" data-layer="risk" d="M40 345C158 305 242 340 329 286s160-50 236-104 153-73 232-72l23 91c-84-4-143 28-225 80s-151 43-227 92-190 40-323 72z"/>
+                  <path class="map-road main-road" d="M18 397 202 290 349 254 498 172 787 57M91 26l136 147 128 81 72 162M40 204l235 27 127-12 138 40 235 12"/>
+                  <path class="map-cauce" d="M14 371C125 337 175 306 256 300c86-6 107-38 179-70s101-13 165-53 110-57 207-63"/>
+                  <text class="map-label" x="158" y="94">Alto Trujillo</text><text class="map-label" x="429" y="241">El Porvenir</text><text class="map-label" x="304" y="335">Florencia de Mora</text><text class="map-label map-label-city" x="318" y="422">Trujillo</text><text class="map-small-label" x="527" y="170">Quebrada San Ildefonso</text>
+                  <g class="map-marker" data-layer="sensors" data-report-id="sensor-1" tabindex="0" role="button" aria-label="Sensor de cauce, lectura normal"><circle cx="254" cy="302" r="14"/><path d="M246 302c3 0 3-4 7-4s4 4 8 4m-15 5c3 0 3-4 7-4s4 4 8 4"/></g>
+                  <g class="map-marker marker-warning" data-layer="reports" data-report-id="r1" tabindex="0" role="button" aria-label="Reporte de agua acumulada, El Porvenir"><circle cx="498" cy="195" r="13"/><path d="M498 188v8m0 5h.01"/></g>
+                  <g class="map-marker marker-danger" data-layer="reports" data-report-id="r3" tabindex="0" role="button" aria-label="Reporte de vivienda afectada, Río Seco"><circle cx="357" cy="284" r="13"/><path d="M357 277v8m0 5h.01"/></g>
+                  <g class="map-marker marker-safe" data-layer="safe" data-report-id="safe-1" tabindex="0" role="button" aria-label="Zona segura, Alto Trujillo"><circle cx="124" cy="91" r="13"/><path d="m118 91 4 4 8-9"/></g>
+                  <g class="map-marker marker-safe" data-layer="safe" data-report-id="safe-2" tabindex="0" role="button" aria-label="Zona segura, Trujillo"><circle cx="687" cy="376" r="13"/><path d="m681 376 4 4 8-9"/></g>
+                </svg>
+                <div class="map-zoom-controls"><button data-zoom="in" aria-label="Acercar el mapa">+</button><button data-zoom="out" aria-label="Alejar el mapa">−</button></div>
+                <div class="map-legend"><span><i class="legend-line"></i>Cauce</span><span><i class="legend-dot legend-amber"></i>Reporte vecinal</span><span><i class="legend-square"></i>Punto seguro</span></div>
+                <span class="map-caption">Trazado esquemático · no usar como ruta de evacuación</span>
+              </div>
+              <div class="map-selected" id="map-selected"><svg class="icon"><use href="#i-info"/></svg><span>Selecciona un punto del mapa para ver sus detalles.</span></div>
+            </section>
+            <aside class="panel map-side-panel">
+              <div class="panel-heading"><div><p class="eyebrow">Actividad en la zona</p><h2>Reportes recientes</h2></div><span class="count-badge">3</span></div>
+              <div id="map-report-list" class="compact-report-list"></div>
+              <div class="safe-points-card"><span class="safe-point-mark"><svg class="icon"><use href="#i-shield"/></svg></span><div><strong>Puntos seguros</strong><p>Consulta indicaciones de Defensa Civil antes de desplazarte.</p></div><button class="text-button" data-page="prepare">Ver preparación</button></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" data-view="reports" aria-labelledby="reports-title" hidden>
+          <div class="page-heading"><div><p class="eyebrow">Evidencia compartida por vecinos</p><h1 id="reports-title">Reportes de la comunidad</h1><p class="page-subtitle">Avisos con foto, ubicación y estado de revisión.</p></div><button class="button button-primary report-open"><svg class="icon"><use href="#i-plus"/></svg>Nuevo reporte</button></div>
+          <div class="filter-row" role="group" aria-label="Filtrar reportes">
+            <button class="filter-chip is-selected" data-filter="all" aria-pressed="true">Todos <span id="filter-count-all">3</span></button>
+            <button class="filter-chip" data-filter="review" aria-pressed="false">En revisión <span id="filter-count-review">2</span></button>
+            <button class="filter-chip" data-filter="community" aria-pressed="false">Confirmados <span id="filter-count-community">1</span></button>
+            <button class="filter-chip" data-filter="resolved" aria-pressed="false">Atendidos <span id="filter-count-resolved">0</span></button>
+          </div>
+          <div id="report-list" class="report-grid" aria-live="polite"></div>
+          <div class="safety-note"><svg class="icon"><use href="#i-info"/></svg><span>La confirmación comunitaria ayuda a dar contexto, pero no reemplaza la verificación de las autoridades. Reportes y fotos iniciales son de demostración.</span></div>
+        </section>
+
+        <section class="view" data-view="prepare" aria-labelledby="prepare-title" hidden>
+          <div class="page-heading"><div><p class="eyebrow">Recomendaciones para actuar a tiempo</p><h1 id="prepare-title">Prepárate</h1><p class="page-subtitle">Información práctica para ti y tu familia.</p></div></div>
+          <section class="status-band status-band-compact"><div class="status-main"><span class="status-icon"><svg class="icon"><use href="#i-waves"/></svg></span><div><span class="eyebrow">Lectura simulada del cauce</span><strong>Nivel 0 <span>·</span> Seca</strong></div></div><div class="status-meta"><span><svg class="icon"><use href="#i-layers"/></svg>4/4 sensores en línea</span></div></section>
+          <h2 class="section-title">Niveles de alerta: qué significa y qué hacer</h2>
+          <div class="alert-levels">
+            <article class="alert-level level-normal is-current"><svg class="icon"><use href="#i-waves"/></svg><div><strong>Normal</strong><span>Condición segura. Mantén la preparación.</span></div><svg class="level-check"><use href="#i-check"/></svg></article>
+            <article class="alert-level level-watch"><svg class="icon"><use href="#i-compass"/></svg><div><strong>Vigilancia</strong><span>Revisa los avisos y ten lista tu mochila.</span></div></article>
+            <article class="alert-level level-alert"><svg class="icon"><use href="#i-alert"/></svg><div><strong>Alerta</strong><span>Atiende indicaciones oficiales y prepárate para salir.</span></div></article>
+            <article class="alert-level level-emergency"><svg class="icon"><use href="#i-waves"/></svg><div><strong>Desborde</strong><span>Aléjate del cauce y busca una zona alta.</span></div></article>
+          </div>
+          <div class="prepare-grid">
+            <section class="panel checklist-panel">
+              <div class="panel-heading"><div><p class="eyebrow">Antes de lluvias intensas</p><h2>Lista de preparación</h2></div><span class="check-progress" id="check-progress">0/3</span></div>
+              <label class="check-row"><input type="checkbox" data-check="kit"><span class="custom-check"><svg class="icon"><use href="#i-check"/></svg></span><span class="check-copy"><strong>Mochila de emergencia</strong><small>Agua, alimentos no perecibles, linterna, radio y baterías.</small></span></label>
+              <label class="check-row"><input type="checkbox" data-check="documents"><span class="custom-check"><svg class="icon"><use href="#i-check"/></svg></span><span class="check-copy"><strong>Documentos y medicinas</strong><small>Guarda lo esencial en una bolsa protegida.</small></span></label>
+              <label class="check-row"><input type="checkbox" data-check="meeting"><span class="custom-check"><svg class="icon"><use href="#i-check"/></svg></span><span class="check-copy"><strong>Punto de encuentro</strong><small>Acuerda un lugar seguro en una zona alta.</small></span></label>
+            </section>
+            <div class="prepare-side">
+              <section class="action-card"><span class="action-icon"><svg class="icon"><use href="#i-compass"/></svg></span><div><p class="eyebrow">Si se activa la quebrada</p><h2>Aléjate del cauce</h2><p>Dirígete hacia zonas altas. No intentes cruzar el flujo y sigue las indicaciones oficiales.</p></div></section>
+              <section class="panel safe-map-panel">
+                <div class="panel-heading"><div><p class="eyebrow">Referencia local</p><h2>Puntos seguros cercanos</h2></div></div>
+                <div class="mini-map" role="img" aria-label="Mapa esquemático de referencia, con una ruta que se aleja del cauce"><svg viewBox="0 0 500 205"><rect width="500" height="205" fill="#f4f3eb"/><path d="M0 26h500M0 74h500M0 122h500M0 171h500M46 0v205M112 0v205M176 0v205M244 0v205M314 0v205M384 0v205M450 0v205" stroke="#d8ddda" stroke-width="2"/><path d="M0 173c73-37 132-4 194-38 50-27 113-4 161-48S437 54 500 34" fill="none" stroke="#5e9aa0" stroke-width="8" stroke-linecap="round"/><path d="M126 131c18-32 44-49 76-46s47-16 63-37" fill="none" stroke="#2578b8" stroke-width="4" stroke-dasharray="8 8"/><circle cx="126" cy="131" r="9" fill="#fff" stroke="#2578b8" stroke-width="4"/><path d="M265 35v-12m-9 9 9-10 9 10" stroke="#24715d" stroke-width="4" fill="none"/><text x="24" y="28">Alto Trujillo</text><text x="197" y="164">El Porvenir</text><text x="304" y="107">Quebrada San Ildefonso</text></svg></div>
+                <p class="route-note"><svg class="icon"><use href="#i-info"/></svg>Ruta esquemática y referencial. Confirma con Defensa Civil.</p>
+                <button class="button button-secondary button-full" data-page="map"><svg class="icon"><use href="#i-map"/></svg>Consultar el mapa</button>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view="history" aria-labelledby="history-title" hidden>
+          <div class="page-heading"><div><p class="eyebrow">Registro de sensores y comunidad</p><h1 id="history-title">Historial de eventos</h1><p class="page-subtitle">Consulta activaciones y reportes anteriores.</p></div><button class="button button-secondary"><svg class="icon"><use href="#i-calendar"/></svg>Últimos 30 días</button></div>
+          <div class="history-stats">
+            <article class="stat-card"><span>Activaciones registradas</span><strong>3</strong><small>Ejemplo de demostración</small></article>
+            <article class="stat-card"><span>Reportes recibidos</span><strong>12</strong><small>Ejemplo de demostración</small></article>
+            <article class="stat-card"><span>Última activación de ejemplo</span><strong>10 mar. 2023</strong><small>Referencia histórica</small></article>
+          </div>
+          <section class="panel history-chart-panel">
+            <div class="panel-heading"><div><p class="eyebrow">Vista de muestra</p><h2>Actividad registrada</h2></div><div class="segmented-control"><button class="is-selected" data-chart="rain">Lluvia</button><button data-chart="level">Nivel del cauce</button></div></div>
+            <div class="chart-wrap" role="img" aria-label="Gráfico de ejemplo de actividad de lluvia y nivel del cauce">
+              <svg id="history-chart" viewBox="0 0 800 190" preserveAspectRatio="none"><path class="chart-grid" d="M35 35h735M35 76h735M35 117h735M35 158h735"/><path class="chart-area" d="M36 148 86 148 136 140 186 143 236 127 286 58 336 39 386 95 436 121 486 137 536 142 586 143 636 145 686 143 770 144v14H36z"/><path class="chart-line" d="M36 148 86 148 136 140 186 143 236 127 286 58 336 39 386 95 436 121 486 137 536 142 586 143 636 145 686 143 770 144"/><circle cx="336" cy="39" r="5"/><text x="35" y="181">01 mar.</text><text x="225" y="181">08 mar.</text><text x="425" y="181">15 mar.</text><text x="625" y="181">22 mar.</text></svg>
+            </div>
+            <div class="chart-footnote"><span><i class="legend-line"></i>Curva de ejemplo, sin datos oficiales</span><span>Los registros reales se conectarán al sensor.</span></div>
+          </section>
+          <section class="panel timeline-panel"><div class="panel-heading"><div><p class="eyebrow">Referencia histórica</p><h2>Eventos en la quebrada</h2></div></div>
+            <div class="timeline">
+              <article class="timeline-item"><span class="timeline-marker marker-red"></span><time>1998</time><div><h3>El Niño 1997–98 · desborde en Mampuesto</h3><p>Referencia histórica mencionada en la maqueta original; validar con fuentes antes de publicar.</p></div></article>
+              <article class="timeline-item"><span class="timeline-marker marker-amber"></span><time>15–22 mar. 2017</time><div><h3>Niño Costero · siete huaicos</h3><p>Evento de referencia citado en la maqueta original.</p></div></article>
+              <article class="timeline-item"><span class="timeline-marker marker-teal"></span><time>10 mar. 2023</time><div><h3>Activación tras lluvia intensa</h3><p>Registro ilustrativo para mostrar la navegación del historial.</p></div></article>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegación móvil">
+        <button class="bottom-nav-item is-active" data-page="home" aria-current="page"><svg class="icon"><use href="#i-home"/></svg><span>Inicio</span></button>
+        <button class="bottom-nav-item" data-page="map"><svg class="icon"><use href="#i-map"/></svg><span>Mapa</span></button>
+        <button class="bottom-nav-item" data-page="reports"><svg class="icon"><use href="#i-message"/></svg><span>Reportes</span></button>
+        <button class="bottom-nav-item" data-page="prepare"><svg class="icon"><use href="#i-shield"/></svg><span>Prepárate</span></button>
+        <button class="bottom-nav-item" data-page="history"><svg class="icon"><use href="#i-clock"/></svg><span>Historial</span></button>
+      </nav>
+    </div>
+  </div>
+
+  <dialog class="report-dialog" id="report-dialog" aria-labelledby="report-dialog-title">
+    <form id="report-form" novalidate>
+      <div class="dialog-heading"><div><p class="eyebrow">Aviso comunitario</p><h2 id="report-dialog-title">Nuevo reporte</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Cerrar"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <p class="dialog-intro">Describe lo que ves y agrega una foto si puedes. Este prototipo guarda el reporte solo en esta sesión.</p>
+      <label class="form-field"><span>¿Qué sucede?</span><select id="report-type" required><option value="">Selecciona una situación</option><option>Agua acumulada</option><option>Desborde</option><option>Zona lodosa</option><option>Vivienda afectada</option><option>Huayco en curso</option><option>Otro</option></select></label>
+      <label class="form-field"><span>Zona o referencia</span><select id="report-place" required><option value="">Selecciona una zona</option><option>El Porvenir</option><option>Florencia de Mora</option><option>Alto Trujillo</option><option>Río Seco</option><option>Trujillo</option><option>Otra zona</option></select></label>
+      <label class="form-field"><span>Descripción breve</span><textarea id="report-description" rows="3" maxlength="240" placeholder="Indica lo que observas y una referencia cercana." required></textarea></label>
+      <label class="upload-field" for="report-photo"><svg class="icon"><use href="#i-camera"/></svg><span><strong>Agregar foto</strong><small>JPG, PNG o WEBP · opcional en esta demo</small></span><input type="file" id="report-photo" accept="image/*"></label>
+      <div class="photo-preview" id="photo-preview" hidden></div>
+      <p class="form-note"><svg class="icon"><use href="#i-info"/></svg>No se envía a emergencias ni a las autoridades. Es una demostración local sin backend.</p>
+      <div class="dialog-actions"><button class="button button-secondary" type="button" data-close-dialog>Cancelar</button><button class="button button-primary" type="submit">Guardar en esta demo</button></div>
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
